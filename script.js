@@ -16,6 +16,15 @@ $("#openShop").click(function(){
 });
 
 $(".item1").click(function(){
-
+buy(4,5);
 })
+
+function buy(point, cost) {
+    if (point >== cost) {
+        point = point - cost;
+    }else {
+        alert("Not enough points to purchase!")
+    }
+}
+
 
