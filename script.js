@@ -1,10 +1,17 @@
 var point = 0;
+var increase = 1;
+var multiplier = 10;
+
 $("#point").text(point);
 $(".content").hide();
 
 $("#cookie").click(function(){
-    point = point + 1;
+    point = point + increase;
     $("#point").text(point);
+    $("#cookie").css("width", "90px");
+    setTimeout(function(){
+        $("#cookie").css("width", "100px");
+    }, 100);
 });
 
 $("#openShop").click(function(){
@@ -15,16 +22,25 @@ $("#openShop").click(function(){
     }
 });
 
-$(".item1").click(function(){
-buy(4,5);
-})
+$("#item1").click(function(){
+    if (point >= multiplier) {
+        increase = increase * 2;
+        multiplier = multiplier * 2;
+        $("#item1Text").text(`Multiplier - ${multiplier} points`);
+    }
+});
 
-function buy(point, cost) {
-    if (point >== cost) {
+function buy(money, cost) {
+    if (money >= cost) {
         point = point - cost;
-    }else {
+        $("#point").text(point);
+    } else {
         alert("Not enough points to purchase!")
     }
+}
+
+function changeSize() {
+    $("#cookie").css("width", "100px");
 }
 
 
