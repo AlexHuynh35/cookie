@@ -3,6 +3,7 @@ var increase = 1;
 var multiplier = 10;
 var progress = 0;
 var holder = 0;
+var restrict = 0;
 
 $("#point").text(point);
 $(".content").hide();
@@ -10,9 +11,9 @@ $(".content").hide();
 $("#cookie").click(function() {
     point = point + increase;
     progress = progress + 1;
-    $("#cookie").css("width", "90px");
+    $("#cookie").css("width", "190px");
     setTimeout(function() {
-        $("#cookie").css("width", "100px");
+        $("#cookie").css("width", "200px");
     }, 100);
     $("#point").text(point);
     $("#progress"). css("width", `${progress}%`);
@@ -30,47 +31,57 @@ $(".shop").hover(function() {
 });
 
 $("#item1").click(function() {
-    if (point >= multiplier) {
-        point = point - multiplier;
-        increase = increase * 2;
-        multiplier = multiplier * increase;
-        $("#point").text(point);
-        $("#item1Text").text(`Multiplier - ${multiplier} points`);
+    if (restrict === 0) {
+        if (point >= multiplier) {
+            point = point - multiplier;
+            increase = increase * 2;
+            multiplier = multiplier * increase;
+            $("#point").text(point);
+            $("#item1Text").text(`Multiplier - ${multiplier} points`);
+        } else {
+            alert("Not enough points to purchase!");
+        }
     } else {
-        alert("Not enough points to purchase!");
+        alert("You cannot buy multiplier while 10x boost is on!")
     }
 });
 
 $("#item2").click(function() {
     if (point >= 100) {
-    $("#cookie").attr("src", $("#item2").attr("src"));
+        $("#cookie").attr("src", $("#item2").attr("src"));
     }
     buy(point, 100);
 });
 
 $("#item3").click(function() {
     if (point >= 120) {
-    $("#cookie").attr("src", $("#item3").attr("src"));
+        $("#cookie").attr("src", $("#item3").attr("src"));
     }
     buy(point, 120);
 });
 
 $("#item4").click(function() {
-    if (point >= 140) {
-    progress = 100;
-    $("#progress").css("width", "100%");
-    } 
-    buy(point, 140);
+    if (restrict === 0) {
+        if (point >= 140) {
+        progress = 100;
+        $("#progress").css("width", "100%");
+        } 
+        buy(point, 140);
+    } else {
+        alert("You cannot buy fill while 10x boost is on!")
+    }
 });
 
 $("#item5").click(function() {
     if (point >= 160) {
-    point = 0;
-    $("#point").text(point);
-    increase = 1;
-    multiplier = 10;
-    $("#item1Text").text(`Multiplier - ${multiplier} points`);
-    $("#cookie").attr("src", "http://www.pngall.com/wp-content/uploads/2016/07/Cookie-PNG.png");
+        point = 0;
+        $("#point").text(point);
+        increase = 1;
+        multiplier = 10;
+        $("#item1Text").text(`Multiplier - ${multiplier} points`);
+        progress = 0;
+        $("#progress").css("width", "0%");
+        $("#cookie").attr("src", "http://www.pngall.com/wp-content/uploads/2016/07/Cookie-PNG.png");
     } else {
         alert("Not enough points to purchase!");
     }
@@ -86,12 +97,14 @@ function buy(money, cost) {
 }
 
 function mutiplyBy10() {
-    alert("10x multiplier for 10 seconds!");
+    alert("10x multiplier for 5 seconds!");
     progress = 0;
     $("#progress"). css("width", `${progress}%`);
     holder = increase;
+    restrict = 1;
     increase = increase * 10;
     setTimeout(function() {
         increase = holder;
-    }, 10000);
+        restrict = 0;
+    }, 5000);
 }

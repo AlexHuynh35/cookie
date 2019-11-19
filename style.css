@@ -6,14 +6,14 @@
 
 .game {
     width: 100%;
-    height: 200px;
+    height: 300px;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
 .shop {
-    width: 100%;
+    width: 500px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -29,12 +29,12 @@
 }
 
 #cookie {
-    width: 100px;
+    width: 200px;
 }
 
 .progress {
-    margin-top: 160px;
-    width: 100px;
+    margin-top: 250px;
+    width: 200px;
     position: absolute;
     background-color: lightgray;
     border: 1px black solid;
