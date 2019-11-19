@@ -6,6 +6,7 @@ var holder = 0;
 var restrict = 0;
 
 $("#point").text(point);
+$("#increase").text(increase);
 $(".content").hide();
 
 $("#cookie").click(function() {
@@ -37,6 +38,7 @@ $("#item1").click(function() {
             increase = increase * 2;
             multiplier = multiplier * increase;
             $("#point").text(point);
+            $("#increase").text(increase);
             $("#item1Text").text(`Multiplier - ${multiplier} points`);
         } else {
             alert("Not enough points to purchase!");
@@ -103,8 +105,10 @@ function mutiplyBy10() {
     holder = increase;
     restrict = 1;
     increase = increase * 10;
+    $("#increase").text(increase);
     setTimeout(function() {
         increase = holder;
         restrict = 0;
+        $("#increase").text(increase);
     }, 5000);
 }
