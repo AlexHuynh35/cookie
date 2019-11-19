@@ -32,12 +32,19 @@
     width: 100px;
 }
 
-#progress {
+.progress {
     margin-top: 160px;
     width: 100px;
     position: absolute;
-    padding: 10px;
+    background-color: lightgray;
     border: 1px black solid;
+}
+
+#progress {
+    background-color: brown;
+    width: 0%;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .item img {

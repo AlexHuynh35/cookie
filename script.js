@@ -10,12 +10,12 @@ $(".content").hide();
 $("#cookie").click(function() {
     point = point + increase;
     progress = progress + 1;
-    $("#point").text(point);
     $("#cookie").css("width", "90px");
     setTimeout(function() {
         $("#cookie").css("width", "100px");
     }, 100);
-    $("#progress").attr("value", progress);
+    $("#point").text(point);
+    $("#progress"). css("width", `${progress}%`);
     if (progress >= 100) {
         mutiplyBy10();
     }
@@ -56,11 +56,24 @@ $("#item3").click(function() {
 });
 
 $("#item4").click(function() {
+    if (point >= 140) {
+    progress = 100;
+    $("#progress").css("width", "100%");
+    } 
     buy(point, 140);
 });
 
 $("#item5").click(function() {
-    buy(point, 160);
+    if (point >= 160) {
+    point = 0;
+    $("#point").text(point);
+    increase = 1;
+    multiplier = 10;
+    $("#item1Text").text(`Multiplier - ${multiplier} points`);
+    $("#cookie").attr("src", "http://www.pngall.com/wp-content/uploads/2016/07/Cookie-PNG.png");
+    } else {
+        alert("Not enough points to purchase!");
+    }
 });
 
 function buy(money, cost) {
@@ -75,7 +88,7 @@ function buy(money, cost) {
 function mutiplyBy10() {
     alert("10x multiplier for 10 seconds!");
     progress = 0;
-    $("#progress").attr("value", progress);
+    $("#progress"). css("width", `${progress}%`);
     holder = increase;
     increase = increase * 10;
     setTimeout(function() {
