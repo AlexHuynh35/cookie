@@ -75,17 +75,22 @@ $("#item4").click(function() {
 });
 
 $("#item5").click(function() {
-    if (point >= 160) {
+    if (restrict === 0) {
+        if (point >= 160) {
         point = 0;
         $("#point").text(point);
         increase = 1;
+        $("#increase").text(increase);
         multiplier = 10;
         $("#item1Text").text(`Multiplier - ${multiplier} points`);
         progress = 0;
         $("#progress").css("width", "0%");
         $("#cookie").attr("src", "http://www.pngall.com/wp-content/uploads/2016/07/Cookie-PNG.png");
+        }  else {
+            alert("Not enough points to purchase!");
+        }
     } else {
-        alert("Not enough points to purchase!");
+        alert("You cannot reset while 10x boost is on!")
     }
 });
 
