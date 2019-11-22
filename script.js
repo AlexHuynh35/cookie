@@ -18,9 +18,7 @@ $("#cookie").click(function() {
     }, 100);
     $("#point").text(point);
     $("#progress"). css("width", `${progress}%`);
-    if (progress >= 100) {
-        mutiplyBy10();
-    }
+    barFilled();
 });
 
 $(".shop").hover(function() {
@@ -103,17 +101,19 @@ function buy(money, cost) {
     }
 }
 
-function mutiplyBy10() {
-    alert("10x multiplier for 5 seconds!");
-    progress = 0;
-    $("#progress"). css("width", `${progress}%`);
-    holder = increase;
-    restrict = 1;
-    increase = increase * 10;
-    $("#increase").text(increase);
-    setTimeout(function() {
-        increase = holder;
-        restrict = 0;
+function barFilled() {
+    if (progress >= 100) {
+        alert("10x multiplier for 5 seconds!");
+        progress = 0;
+        $("#progress"). css("width", `${progress}%`);
+        holder = increase;
+        restrict = 1;
+        increase = increase * 10;
         $("#increase").text(increase);
-    }, 5000);
+        setTimeout(function() {
+            increase = holder;
+            restrict = 0;
+            $("#increase").text(increase);
+        }, 5000);
+    }
 }
