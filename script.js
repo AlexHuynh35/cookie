@@ -128,16 +128,16 @@ function barFilled() {
 }
 
 function timer() {
-        setInterval(function() {
-            time = time + 1;
-            countDown = countDown - 1;
-            cps = clicks / time;
-            $("#cps").text(cps);
-        }, 1000 );
+    setInterval(function() {
+        time = time + 1;
+        countDown = countDown - 1;
+        cps = Math.round(clicks / time);
+        $("#cps").text(cps);
         if (countDown <= 0) {
             time = 0;
             clicks = 0;
-            cps = clicks / time;
+            cps = 0;
             $("#cps").text(cps);
         }
-    }
+    }, 1000 );
+}
