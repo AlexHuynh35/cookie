@@ -68,3 +68,13 @@ body {
     display: flex;
     justify-content: space-between;
 }
+
+.stats {
+    display: flex;
+    justify-content: center;
+}
+
+#increase {
+    margin-right: 25px;
+}
+

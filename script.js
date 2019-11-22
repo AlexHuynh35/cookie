@@ -4,14 +4,23 @@ var multiplier = 10;
 var progress = 0;
 var holder = 0;
 var restrict = 0;
+var time = 0;
+var clicks = 0;
+var cps = 0;
+var countDown = 5;
 
 $("#point").text(point);
 $("#increase").text(increase);
+$("#cps").text(cps);
 $(".content").hide();
+
+timer();
 
 $("#cookie").click(function() {
     point = point + increase;
     progress = progress + 1;
+    clicks = clicks + 1;
+    countDown = 5;
     $("#cookie").css("width", "190px");
     setTimeout(function() {
         $("#cookie").css("width", "200px");
@@ -117,3 +126,18 @@ function barFilled() {
         }, 5000);
     }
 }
+
+function timer() {
+        setInterval(function() {
+            time = time + 1;
+            countDown = countDown - 1;
+            cps = clicks / time;
+            $("#cps").text(cps);
+        }, 1000 );
+        if (countDown <= 0) {
+            time = 0;
+            clicks = 0;
+            cps = clicks / time;
+            $("#cps").text(cps);
+        }
+    }
